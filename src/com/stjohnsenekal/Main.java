@@ -6,7 +6,6 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
 
         TimeClock productivityClock = new TimeClock();
 
@@ -18,16 +17,27 @@ public class Main {
         developers.add(new Developer("Peter"));
         developers.add(new Developer("Paul"));
 
-        //the developers
         for (Developer developer : developers
         ) {
             productivityClock.registerObserver(developer);
         }
 
-        //the managers
         productivityClock.registerObserver(theBoss);
 
+        startTheOfficeClock(productivityClock);
 
+        checkDeveloperProductivity(developers);
+
+    }
+
+    private static void checkDeveloperProductivity(List<Developer> developers) {
+        for (Developer developer : developers
+        ) {
+            System.out.println(developer.getName() + " has these productive hours: " + developer.getProductiveHours());
+        }
+    }
+
+    private static void startTheOfficeClock(TimeClock productivityClock) {
         for(int hour = 0; hour < 8; hour++)
         {
             try {
@@ -37,11 +47,5 @@ public class Main {
                 e.printStackTrace ();
             }
         }
-
-        for (Developer developer : developers
-        ) {
-            System.out.println(developer.getName() + " has these productive hours: " + developer.getProductiveHours());
-        }
-
     }
 }

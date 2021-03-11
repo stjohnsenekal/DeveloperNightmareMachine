@@ -13,7 +13,7 @@ public class Developer implements Observer {
     }
 
     public void update() {
-        System.out.println("DEVELOPER sees it: " + this.name + " chaos? " + monkey.doesMeetingInterveneOnProductivity());
+        System.out.println("DEVELOPER trying to be productive: " + this.name + ". But they have a meeting? " + monkey.doesMeetingInterveneOnProductivity());
         if(!monkey.doesMeetingInterveneOnProductivity()) {
             this.incrementProductiveHours();
         }
