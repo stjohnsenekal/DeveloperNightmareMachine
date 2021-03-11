@@ -1,5 +1,8 @@
 package com.stjohnsenekal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -7,14 +10,25 @@ public class Main {
 
         TimeClock productivityClock = new TimeClock();
 
-        Manager fred = new Manager();
-        Developer john = new Developer();
+        Manager theBoss = new Manager();
 
-        productivityClock.registerObserver(fred);
-        productivityClock.registerObserver(john);
+        List<Developer> developers = new ArrayList<Developer>();
+
+        developers.add(new Developer("John"));
+        developers.add(new Developer("Peter"));
+        developers.add(new Developer("Paul"));
+
+        //the developers
+        for (Developer developer : developers
+        ) {
+            productivityClock.registerObserver(developer);
+        }
+
+        //the managers
+        productivityClock.registerObserver(theBoss);
 
 
-        for(int hour = 0; hour < 24; hour++)
+        for(int hour = 0; hour < 8; hour++)
         {
             try {
                 Thread.sleep (1000);
@@ -23,5 +37,11 @@ public class Main {
                 e.printStackTrace ();
             }
         }
+
+        for (Developer developer : developers
+        ) {
+            System.out.println(developer.getName() + " has these productive hours: " + developer.getProductiveHours());
+        }
+
     }
 }
